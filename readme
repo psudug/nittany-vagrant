@@ -26,8 +26,12 @@ www.drupal7.dev      192.168.56.101
 www.drupal7.dev      192.168.56.101
 
 Step 8: go to either http://drupal7.dev or http://drupal8.dev in your browser.
--- Drupal 7 will already be installed with some modules turned on for you. If you would like more modules out of the box please file an issue here and I will add them. This is just a starting point.
--- Drupal 8 has only been downloaded for you with an empty database set up. The dbname and dbusername is drupal8 and the password is 123. If you want to play around with it, run through the installer by going to http://drupal8.dev in your browser.
+  -- Drupal 7 will already be installed with some modules turned on for you. 
+  user name = admin
+  password = pass 
+If you would like more modules out of the box please file an issue here and I will add them. This is just a starting point.
+  
+  -- Drupal 8 has only been downloaded for you with an empty database set up. The dbname and dbusername is drupal8 and the password is 123. If you want to play around with it, run through the installer by going to http://drupal8.dev in your browser.
 
 To Access a database UI go to http://192.168.56.101/adminer. It is pretty easy to use and at somepoint I may add phpmyadmin if there are any requests for it. 
 
