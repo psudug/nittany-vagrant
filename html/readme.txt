@@ -1,0 +1,1 @@
+this directory will be used as the root and will house all drupal instances.
