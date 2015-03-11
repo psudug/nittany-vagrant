@@ -2,7 +2,7 @@
 # setup drush via composer
 cd $HOME
 curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
+sudo mv composer.phar /usr/local/bin/composer
 php /usr/local/bin/composer global require drush/drush:6.*
 # symlink into drush
 sudo ln -sf $HOME/.composer/vendor/drush/drush /usr/bin/drush

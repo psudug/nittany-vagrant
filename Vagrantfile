@@ -11,8 +11,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "private_network", ip: "192.168.18.55"
   # host name
   config.vm.hostname = "nittany.psudug.dev"
-  # run this script whenever you provision
-  config.vm.provision "shell", path: "scripts/start.sh"
+
+  # run script as root
+  config.vm.provision "shell",
+    path: "scripts/installer/root.sh"
+  # run script as vagrant user
+  config.vm.provision "shell",
+    path: "scripts/installer/vagrant.sh",
+    privileged: FALSE
 
   # automatically carve out 1/4 of the box resources for this VM
   config.vm.provider "virtualbox" do |v|
