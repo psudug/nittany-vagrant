@@ -1,6 +1,7 @@
 #!/usr/bin/sh
 
 cd ~
+ln -s /var/www/html/nittany nittany
 echo "alias g='git'" >> .bashrc
 echo "alias d='drush'" >> .bashrc
 echo "alias l='ls -laHF'" >> .bashrc
