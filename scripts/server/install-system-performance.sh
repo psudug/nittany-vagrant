@@ -15,3 +15,8 @@ cp performance/apc.txt $apcini
 cat performance/php.txt >> $phpini
 cat performance/my.txt >> $mycnf
 cp performance/zzz_performance.conf $zzz_performance
+
+chkconfig httpd on
+chkconfig mysqld on
+service httpd restart
+service mysqld restart

@@ -5,17 +5,16 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
-  config.vm.box = "centos-6.5"
-  #config.vm.box_url = "centos-6.5"
-  config.vm.network "private_network", ip: "192.168.33.101"
-  config.vm.hostname = "local.dev"
+  # centos 6.5
+  config.vm.box = "chef/centos-6.5"
+  # ip address
+  config.vm.network "private_network", ip: "192.168.18.55"
+  # host name
+  config.vm.hostname = "nittany.psudug.dev"
+  # run this script whenever you provision
   config.vm.provision "shell", path: "scripts/start.sh"
 
-  config.vm.provider "virtualbox" do |v|
-    v.memory = 1024
-  end
-
+  # automatically carve out 1/4 of the box resources for this VM
   config.vm.provider "virtualbox" do |v|
     host = RbConfig::CONFIG['host_os']
 
@@ -32,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       cpus = 2
       mem = 1024
     end
-
+    # you can modify these manually if you want specific specs
     v.customize ["modifyvm", :id, "--memory", mem]
     v.customize ["modifyvm", :id, "--cpus", cpus]
   end
