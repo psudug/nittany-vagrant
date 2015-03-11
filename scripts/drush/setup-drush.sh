@@ -12,10 +12,8 @@ if [ ! -d $HOME/.drush ]; then
   mkdir $HOME/.drush
 fi
 yes | cp -rf /var/www/elmsln/scripts/drush/server/* $HOME/.drush/
-# stupid ubuntu drush thing to work with sudo
-if [[ $os == '2' ]]; then
-  ln -s /root/.composer/vendor/drush/drush /usr/share/drush
-fi
+ln -s /root/.composer/vendor/drush/drush /usr/share/drush
+
 # get drush recipes, honestly how can you do work without it?
 drush dl drush_recipes
 drush cc drush
