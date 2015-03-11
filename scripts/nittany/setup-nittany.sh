@@ -5,4 +5,4 @@ cd $HOME/.drush
 git clone https://github.com/psudug/nittany.git drecipes/nittany
 drush cc drush
 # install the baseline of nittany above minimal
-drush @nittany cook nittany-baseline --y
+drush @nittany cook nittany_baseline --y
