@@ -6,10 +6,11 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "Vagrant-FB"
-  config.vm.box_url = "chef/centos-6.5"
+  config.vm.box = "centos-6.5"
+  #config.vm.box_url = "centos-6.5"
   config.vm.network "private_network", ip: "192.168.33.101"
   config.vm.hostname = "local.dev"
+  config.vm.provision "shell", path: "scripts/start.sh"
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024
