@@ -1,6 +1,5 @@
 #!/usr/bin/sh
-
-cd /home/vagrant
+cd $HOME
 ln -s /var/www/html/nittany nittany
 echo "alias g='git'" >> .bashrc
 echo "alias d='drush'" >> .bashrc

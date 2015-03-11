@@ -8,4 +8,4 @@ sh /vagrant/scripts/home/setup-home.sh
 # establish drush
 sh /vagrant/scripts/drush/setup-drush.sh
 # establish drupal
-sh /vagrantscripts/drupal/setup-drupal.sh
+sh /vagrant/scripts/drupal/setup-drupal.sh
