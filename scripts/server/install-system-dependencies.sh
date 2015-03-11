@@ -5,8 +5,15 @@
 # using yum to install main packages
 yum -y install git nano make mysql mysql-server httpd php php-gd php-xml php-pdo php-mbstring php-mysql php-pear php-devel php-pecl-ssh2 php-pecl-apc
 
+curl -sL https://rpm.nodesource.com/setup | bash -
+yum install -y nodejs
+yum install gcc-c++ make
+yum groupinstall 'Development Tools'
+npm install -g grunt-cli
+
 #using pecl to install uploadprogress, this is optional.
 pecl install uploadprogress
+
 
 # adding uploadprogresss to php conf files
 touch /etc/php.d/uploadprogress.ini
