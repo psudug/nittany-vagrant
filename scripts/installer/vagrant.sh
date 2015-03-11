@@ -5,3 +5,5 @@ bash /vagrant/scripts/home/setup-home.sh
 bash /vagrant/scripts/drush/setup-drush.sh
 # establish drupal
 bash /vagrant/scripts/drupal/setup-drupal.sh
+# establish nittany
+bash /vagrant/scripts/nittany/setup-nittany.sh
