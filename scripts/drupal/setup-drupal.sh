@@ -17,4 +17,6 @@ sudo chown -R apache:apache /var/www/html/nittany/sites/default/files
 sudo chmod 775 /var/www/html/nittany/sites/default/files
 # make a private files directory
 sudo mkdir -p /var/www/drupal_priv/nittany
+sudo chown -R apache:apache /var/www/drupal_priv/nittany
+sudo chmod 775 /var/www/drupal_priv/nittany
 drush @nittany vset file_private_path /var/www/drupal_priv/nittany
