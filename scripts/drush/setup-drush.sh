@@ -11,7 +11,7 @@ echo 'export PATH="$PATH:/usr/bin/drush"' >> $HOME/.bashrc
 # reload bashrc so drush calls can function
 source .bashrc
 # get drush recipes so it can do most of the heavy lifting / boring parts
-drush dl drush_recipes-7.x-1.x
+git clone --branch 7.x-1.x http://git.drupal.org/project/drush_recipes.git $HOME/.drush/drush_recipes
 drush cc drush
 # snag drush plugins
 drush cook devel_drush --y
