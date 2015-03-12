@@ -7,3 +7,8 @@ drush @nittany si minimal --db-url=mysql://root:@localhost/nittany --account-nam
 # set to admin
 drush @nittany upwd admin --password=admin
 drush @nittany cleanup
+
+# apache file to match
+sudo cp /vagrant/scripts/server/files/domains.conf /etc/httpd/conf.d/domains.conf
+sudo chkconfig httpd on
+sudo service httpd restart
