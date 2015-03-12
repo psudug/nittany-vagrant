@@ -25,3 +25,6 @@ echo extension=uploadprogress.so > /etc/php.d/uploadprogress.ini
 
 # set httpd_can_sendmail so drupal mails go out
 setsebool -P httpd_can_sendmail on
+
+# apache file
+cp /vagrant/scripts/server/files/domains.conf /etc/httpd/conf.d/domains.conf
