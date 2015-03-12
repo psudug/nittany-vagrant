@@ -9,3 +9,5 @@ source .bashrc
 bash /vagrant/scripts/drupal/setup-drupal.sh
 # establish nittany
 bash /vagrant/scripts/nittany/setup-nittany.sh
+# establish git repo
+bash /vagrant/scripts/git/setup-repo.sh
