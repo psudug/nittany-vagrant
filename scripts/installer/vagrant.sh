@@ -1,5 +1,6 @@
 #!/bin/bash
 # establish home directory
+cd $HOME
 bash /vagrant/scripts/home/setup-home.sh
 # establish drush
 bash /vagrant/scripts/drush/setup-drush.sh
