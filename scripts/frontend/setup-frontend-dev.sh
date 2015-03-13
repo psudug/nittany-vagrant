@@ -1,13 +1,13 @@
 #!/usr/bin/sh
 
-sudo npm install -g bower
-sudo npm install -g gulp
-sudo npm install -g gulp-hologram
-sudo npm install -g grunt-cli
-sudo gem install bundler
+yes | sudo npm install -g bower
+yes | sudo npm install -g gulp
+yes | sudo npm install -g gulp-hologram
+yes | sudo npm install -g grunt-cli
+yes | sudo gem install bundler
 git clone https://github.com/heyMP/frontend-dev.git
 cd frontend-dev
-sudo npm install
-bower install
-bundle install
-gulp build
+yes | sudo npm install
+yes | bower install
+yes | bundle install
+yes | gulp build
