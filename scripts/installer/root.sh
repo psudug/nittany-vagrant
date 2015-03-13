@@ -9,5 +9,5 @@ if [ -z $1 ]; then
   else
     owner=$1
 fi
-chown vagrant:root /var/www/html
+chown $owner:root /var/www/html
 chmod 775 /var/www/html
