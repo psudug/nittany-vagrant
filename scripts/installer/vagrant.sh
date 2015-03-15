@@ -1,9 +1,9 @@
 #!/bin/bash
+# establish drush needs to be done first for wizard...
+bash /vagrant/scripts/drush/setup-drush.sh
 # establish home directory
 cd $HOME
 bash /vagrant/scripts/home/setup-home.sh
-# establish drush
-bash /vagrant/scripts/drush/setup-drush.sh
 # reload bashrc so drush calls can function
 source .bashrc
 # establish drupal
