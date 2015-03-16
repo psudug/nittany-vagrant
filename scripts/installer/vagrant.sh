@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ -z $1 ]; then
+    owner='vagrant'
+  else
+    owner=$1
+fi
 # establish drush needs to be done first for wizard...
 bash /vagrant/scripts/drush/setup-drush.sh
 # establish home directory
@@ -7,7 +12,7 @@ bash /vagrant/scripts/home/setup-home.sh
 # reload bashrc so drush calls can function
 source .bashrc
 # establish drupal
-bash /vagrant/scripts/drupal/setup-drupal.sh
+bash /vagrant/scripts/drupal/setup-drupal.sh $owner
 # establish nittany
 bash /vagrant/scripts/nittany/setup-nittany.sh
 # establish travis CI
