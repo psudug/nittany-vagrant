@@ -25,3 +25,5 @@ sudo mkdir -p /var/www/drupal_priv/nittany
 sudo chown -R $owner:apache /var/www/drupal_priv/nittany
 sudo chmod 2775 /var/www/drupal_priv/nittany
 drush @nittany vset file_private_path /var/www/drupal_priv/nittany
+# create libraries directory
+mkdir -p /var/www/html/nittany/sites/all/libraries
