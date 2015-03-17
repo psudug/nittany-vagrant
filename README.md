@@ -20,17 +20,19 @@ This is a Vagrant profile for installing a fully functioning Drupal system that 
 ```
 cd nittany-vagrant
 vagrant up
+vagrant ssh (This will run a setup script for your instance of Drupal.)
 ```
+Point your browser to http://nittany.psudug.dev
+
+Log into this with `user: admin | password: admin`
+
+To connect to the console of your instance: `vagrant ssh`
 
 ###Update the vagrant instance
 ```
 cd nittany-vagrant
 vagrant up --provision
 ```
-
-You can log into this with `user: admin | password: admin`
-
-To connect to the console of your instance: `vagrant ssh`
 
 ###SFTP method of management
 
