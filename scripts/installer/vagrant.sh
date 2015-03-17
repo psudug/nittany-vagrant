@@ -19,3 +19,10 @@ bash /vagrant/scripts/nittany/setup-nittany.sh
 bash /vagrant/scripts/travis/setup-travis.sh
 # establish git repo
 bash /vagrant/scripts/git/setup-repo.sh
+# setup wizard to run on login
+cd $HOME
+ln -s /var/www/html/nittany nittany
+echo "if [ ! -f ./wizard_ran.txt ];" >> .bashrc
+echo "  then" >> .bashrc
+echo "    source /vagrant/scripts/buckets/wizard.sh" >> .bashrc
+echo "fi" >> .bashrc
