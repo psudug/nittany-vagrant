@@ -37,6 +37,8 @@ if [ "$WIZ" = "y" ]; then
     git clone https://github.com/psudug/quail4textbook.git /var/www/html/nittany/sites/all/libraries/quail
     git clone https://github.com/psudug/ckeditor4textbook.git /var/www/html/nittany/sites/all/libraries/ckeditor
     $run
+    # add section here to ask about setting Full and/or Filtered HTML Text Formats to CKEditor? 
+    # or add note that only Textbook format gets setup.
   else
     dugwarn "To run this in the future you can issue: $run"
   fi
