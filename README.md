@@ -32,12 +32,14 @@ You can log into this with `user: admin | password: admin`
 
 To connect to the console of your instance: `vagrant ssh`
 
+###SFTP method of management
+
+Vagrant allows you to treat it like it’s a remote server (even though it’s running local to your machine). This allows you to SFTP files to the server using credentials provided in nittany/sftp-config.json.  This works OOTB with Sublime Text if you have the SFTP plugin.
+
 ###Why use this
+This allows you to jump start development of a Drupal site using modules that the Penn State Drupal User’s Group recommends. While you won’t need everything included here, you will find that you end up using the same modules on almost all build outs. Nittany’s Vagrant server is a great place to learn both about how Drupal and Linux boxes are setup, but also to experiment and practice system administration in a setup similar to those services provided by the VMHosting group (or any other Virtual hosting cluster).
 
-This project is based on the [Vagrant Project](http://drupal.org/project/vagrant) on Drupal.org, but includes a number of tweaks.
+There are more modules then what’s provided here and we’ll be adding more recipes in the future but the intention of this script is to do the heavy lifting of getting a new site up and do so in a standardized manner.
 
-###Other projects of interest / that this is based on
-
-*  [https://github.com/msonnabaum/drupalcon-training-chef-repo](https://github.com/msonnabaum/drupalcon-training-chef-repo)
-*  [http://drupal.org/sandbox/mbutcher/1356522](http://drupal.org/sandbox/mbutcher/1356522)
-*  [http://drupal.org/project/drush-vagrant](http://drupal.org/project/drush-vagrant)
+###Bonus points
+If you look in the scripts/_nonvagrant directory you’ll find a script called newserver.sh. This allows you to effectively provision the exact same setup onto *any* server running CentOS 6.x or RHEL 6.x. You can already most likely see why this would be useful (improve nittany-vagrant, get it working everywhere, deploy anywhere on anything using the same development tools you’ve come to use local in this script).
