@@ -14,10 +14,9 @@ There are more modules then what’s provided here and we’ll be adding more re
 3. Install [git](http://git-scm.com/downloads) (recommended)
 4. Add the below statement to your /etc/hosts (or [windows equivalent](http://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)) so you can access it "over the web" - you _may_ need administrator rights to do this
 
+###Nittany host file addition
 ```
-###Nittany development
-
-# front facing addresses
+# Nittany Vagrant development address
 192.168.18.55      nittany.psudug.dev
 ```
 
