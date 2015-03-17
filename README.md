@@ -8,7 +8,7 @@ This is a Vagrant profile for installing a fully functioning Drupal system that 
 2. Install [Vagrant](http://www.vagrantup.com/downloads.html) (you'll need Vagrant 1.7+)
 3. Install [git](http://git-scm.com/downloads) (recommended)
 4. Download or Clone (`git clone https://github.com/psudug/nittany-vagrant.git`) this project
-5. Add this line to your /etc/hosts (or [windows equivalent](http://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)) so you can access it "over the web":
+5. Add this line to your /etc/hosts (or [windows equivalent](http://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)) so you can access it "over the web" - you _may_ need administrator rights to do so - 
 ```
 ###Nittany development
 
