@@ -48,11 +48,20 @@ if [ "$WIZ" = "y" ]; then
   #if [ "$answer" = "y" ]; then
   #  $run
   #else
-  #  dugwarn "run this in the future: $run"
+  #  dugwarn "To run this in the future you can issue: $run"
   #fi
 
   # ask about theme
+  #question="Would you like to use Zurb foundation instead of the lame default drupal theme?"
+  # @todo in the future we'll ask what theme
   #drush @nittany cook nittany_theme --skip-confirm
+  #run='drush @nittany cook zurb_foundation --skip-confirm'
+  #read -p "$question (y/n) " answer
+  #if [ "$answer" = "y" ]; then
+  #  $run
+  #else
+  #  dugwarn "To run this in the future you can issue: $run"
+  #fi
 else
   dugecho "Awesome enjoy building the future! :)"
 fi
