@@ -11,13 +11,13 @@ dugwarn(){
   echo "${bldred}$1${txtreset}"
 }
 
-read -p "Would you like a wizard to guide you through this process? (y/n) " WIZ
+read -p "Would you like an interactive wizard to guide you through some site building? (y/n) " WIZ
 # lets keep going with everything
 if [ "$WIZ" = "y" ]; then
   touch $HOME/wizard_ran.txt
   dugecho "Glad to hear it, let's get started"
   # ask about SEO
-  question="Would you like your site to come equipped with Search Engine Goodness?"
+  question="Would you like some Search Engine Optimization (SEO) enabled?"
   run='drush @nittany cook seo --y'
   read -p "$question (y/n) " answer
   if [ "$answer" = "y" ]; then
@@ -29,7 +29,7 @@ if [ "$WIZ" = "y" ]; then
   fi
 
   # ask about wysiwyg
-  question="Would you like your site to come with CKEditor 4.x setup already?"
+  question="Would you like a nice WYSIWYG editor (CKEditor 4.x)?"
   run='drush @nittany cook textbook --y'
   read -p "$question (y/n) " answer
   if [ "$answer" = "y" ]; then
@@ -65,7 +65,8 @@ if [ "$WIZ" = "y" ]; then
   #  dugwarn "To run this in the future you can issue: $run"
   #fi
 else
-  dugecho "Awesome enjoy building the future! :)"
+  dugecho "Awesome, that shoud get you started."
+  dugecho "Enjoy building the future! :)"
 fi
 # file existing means this won't execute on ssh login
 touch $HOME/wizard_ran.txt
@@ -80,11 +81,22 @@ dugecho "http://nittany.psudug.dev/"
 dugecho "Login: admin / admin"
 dugecho ""
 dugecho "WE ARE"
-dugecho ":::::::::   ::::::::  :::    :::      :::::::::  :::    :::  ::::::::  "
-dugecho ":+:    :+: :+:    :+: :+:    :+:      :+:    :+: :+:    :+: :+:    :+: "
-dugecho "+:+    +:+ +:+        +:+    +:+      +:+    +:+ +:+    +:+ +:+        "
-dugecho "+#++:++#+  +#++:++#++ +#+    +:+      +#+    +:+ +#+    +:+ :#:        "
-dugecho "+#+               +#+ +#+    +#+      +#+    +#+ +#+    +#+ +#+   +#+# "
-dugecho "#+#        #+#    #+# #+#    #+#      #+#    #+# #+#    #+# #+#    #+# "
-dugecho "###         ########   ########       #########   ########   ########  "
+#dugecho ":::::::::   ::::::::  :::    :::      :::::::::  :::    :::  ::::::::  "
+#dugecho ":+:    :+: :+:    :+: :+:    :+:      :+:    :+: :+:    :+: :+:    :+: "
+#dugecho "+:+    +:+ +:+        +:+    +:+      +:+    +:+ +:+    +:+ +:+        "
+#dugecho "+#++:++#+  +#++:++#++ +#+    +:+      +#+    +:+ +#+    +:+ :#:        "
+#dugecho "+#+               +#+ +#+    +#+      +#+    +#+ +#+    +#+ +#+   +#+# "
+#dugecho "#+#        #+#    #+# #+#    #+#      #+#    #+# #+#    #+# #+#    #+# "
+#dugecho "###         ########   ########       #########   ########   ########  "
 
+dugecho "      ___         ___           ___                   _____          ___           ___      "
+dugecho "     /  /\       /  /\         /__/\                 /  /::\        /__/\         /  /\     "
+dugecho "    /  /::\     /  /:/_        \  \:\               /  /:/\:\       \  \:\       /  /:/_    "
+dugecho "   /  /:/\:\   /  /:/ /\        \  \:\             /  /:/  \:\       \  \:\     /  /:/ /\   "
+dugecho "  /  /:/~/:/  /  /:/ /::\   ___  \  \:\           /__/:/ \__\:|  ___  \  \:\   /  /:/_/::\  "
+dugecho " /__/:/ /:/  /__/:/ /:/\:\ /__/\  \__\:\          \  \:\ /  /:/ /__/\  \__\:\ /__/:/__\/\:\ "
+dugecho " \  \:\/:/   \  \:\/:/~/:/ \  \:\ /  /:/           \  \:\  /:/  \  \:\ /  /:/ \  \:\ /~~/:/ "
+dugecho "  \  \::/     \  \::/ /:/   \  \:\  /:/             \  \:\/:/    \  \:\  /:/   \  \:\  /:/  "
+dugecho "   \  \:\      \__\/ /:/     \  \:\/:/               \  \::/      \  \:\/:/     \  \:\/:/   "
+dugecho "    \  \:\       /__/:/       \  \::/                 \__\/        \  \::/       \  \::/    "
+dugecho "     \__\/       \__\/         \__\/                                \__\/         \__\/     "
