@@ -87,13 +87,11 @@ if [ "$WIZ" = "y" ]; then
 
   # clear caches so everyone is happy
   drush @nittany cc all
-  # print status so they know it lives
-  drush @nittany status
-  dugecho "To log into your new drupal site go to:"
-  dugecho "http://nittany.psudug.dev/"
-  dugecho "Login: admin / admin"
+  drupalran="yes"
+  else
+  drupalran="no"
 fi
-# ask about SEO
+# ask about front end dev
 question="Would you like to install PSU DUGs front end development stack for SASS?"
 run='sudo bash /vagrant/scripts/frontend/setup-frontend-dev.sh'
 read -p "$question (y/n) " answer
@@ -108,13 +106,26 @@ run='bash /vagrant/scripts/ssh/setup-ssh.sh'
 read -p "$question (y/n) " answer
 if [ "$answer" = "y" ]; then
   $run
+  dugecho "Now that you have an SSH key, you can run:"
+  dugwarn 'ssh-copy-id -i ~/.ssh/id_rsa.pub "-p PORT USER@SERVER"'
+  dugecho "enter your password, and bind this VM with a server to help with provisioning in the future"
 else
   dugwarn "To run this in the future you can issue: $run"
 fi
 # file existing means this won't execute on ssh login
 touch $HOME/wizard_ran.txt
+dugecho ""
 dugecho "If you ever want to run through this wizard again you can either delete ~/wizard_ran.txt or run: bash /vagrant/scripts/buckets/wizard.sh"
 dugecho "That's all for now but trust us there's more to come... happy drupaling!"
+if [ "$drupalran" = "yes" ]; then
+  # print status so they know it lives
+  drush @nittany status
+  dugecho "==============================="
+  dugecho "login to your new drupal site:"
+  dugecho "http://nittany.psudug.dev/"
+  dugecho "Login: admin / admin"
+  dugecho "==============================="
+fi
 dugecho ""
 dugecho "WE ARE"
 dugecho "      ___         ___           ___                _____          ___           ___      "
