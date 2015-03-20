@@ -11,11 +11,22 @@ dugwarn(){
   echo "${bldred}$1${txtreset}"
 }
 
-read -p "Would you like an interactive wizard to guide you through some site building? (y/n) " WIZ
+read -p "Would you like to install drupal? (y/n) " WIZ
 # lets keep going with everything
 if [ "$WIZ" = "y" ]; then
   touch $HOME/wizard_ran.txt
-  dugecho "Glad to hear it, let's get started"
+  # establish drupaling
+  dugecho "Glad to hear it, let's get started by installing drupal"
+  bash /vagrant/scripts/drupal/setup-drupal.sh $USER
+  # establish nittany
+  question="Would you like to install the nittany baseline? These are a package of commonly recommended modules by the PSU DUG community."
+  run='bash /vagrant/scripts/nittany/setup-nittany.sh'
+  read -p "$question (y/n) " answer
+  if [ "$answer" = "y" ]; then
+    $run
+  else
+    dugwarn "To run this in the future you can issue: $run"
+  fi
   # ask about SEO
   question="Would you like some Search Engine Optimization (SEO) enabled?"
   run='drush @nittany cook seo --y'
@@ -37,7 +48,7 @@ if [ "$WIZ" = "y" ]; then
     git clone https://github.com/psudug/quail4textbook.git /var/www/html/nittany/sites/all/libraries/quail
     git clone https://github.com/psudug/ckeditor4textbook.git /var/www/html/nittany/sites/all/libraries/ckeditor
     $run
-    # add section here to ask about setting Full and/or Filtered HTML Text Formats to CKEditor? 
+    # add section here to ask about setting Full and/or Filtered HTML Text Formats to CKEditor?
     # or add note that only Textbook format gets setup.
   else
     dugwarn "To run this in the future you can issue: $run"
@@ -64,39 +75,56 @@ if [ "$WIZ" = "y" ]; then
   #else
   #  dugwarn "To run this in the future you can issue: $run"
   #fi
+  # ask about git
+  question="Would you like to start putting this all in version control?"
+  run='bash /vagrant/scripts/git/setup-repo.sh'
+  read -p "$question (y/n) " answer
+  if [ "$answer" = "y" ]; then
+    $run
+  else
+    dugwarn "To run this in the future you can issue: $run"
+  fi
+
+  # clear caches so everyone is happy
+  drush @nittany cc all
+  # print status so they know it lives
+  drush @nittany status
+  dugecho "To log into your new drupal site go to:"
+  dugecho "http://nittany.psudug.dev/"
+  dugecho "Login: admin / admin"
+fi
+# ask about SEO
+question="Would you like to install PSU DUGs front end development stack for SASS?"
+run='sudo bash /vagrant/scripts/frontend/setup-frontend-dev.sh'
+read -p "$question (y/n) " answer
+if [ "$answer" = "y" ]; then
+  $run
 else
-  dugecho "Awesome, that shoud get you started."
-  dugecho "Enjoy building the future! :)"
+  dugwarn "To run this in the future you can issue: $run"
+fi
+# SSH
+question="Would you like to setup SSH keys?"
+run='bash /vagrant/scripts/ssh/setup-ssh.sh'
+read -p "$question (y/n) " answer
+if [ "$answer" = "y" ]; then
+  $run
+else
+  dugwarn "To run this in the future you can issue: $run"
 fi
 # file existing means this won't execute on ssh login
 touch $HOME/wizard_ran.txt
-# clear caches so everyone is happy
-drush @nittany cc all
-# print status so they know it lives
-drush @nittany status
 dugecho "If you ever want to run through this wizard again you can either delete ~/wizard_ran.txt or run: bash /vagrant/scripts/buckets/wizard.sh"
 dugecho "That's all for now but trust us there's more to come... happy drupaling!"
 dugecho ""
-dugecho "http://nittany.psudug.dev/"
-dugecho "Login: admin / admin"
-dugecho ""
 dugecho "WE ARE"
-#dugecho ":::::::::   ::::::::  :::    :::      :::::::::  :::    :::  ::::::::  "
-#dugecho ":+:    :+: :+:    :+: :+:    :+:      :+:    :+: :+:    :+: :+:    :+: "
-#dugecho "+:+    +:+ +:+        +:+    +:+      +:+    +:+ +:+    +:+ +:+        "
-#dugecho "+#++:++#+  +#++:++#++ +#+    +:+      +#+    +:+ +#+    +:+ :#:        "
-#dugecho "+#+               +#+ +#+    +#+      +#+    +#+ +#+    +#+ +#+   +#+# "
-#dugecho "#+#        #+#    #+# #+#    #+#      #+#    #+# #+#    #+# #+#    #+# "
-#dugecho "###         ########   ########       #########   ########   ########  "
-
-dugecho "      ___         ___           ___                   _____          ___           ___      "
-dugecho "     /  /\       /  /\         /__/\                 /  /::\        /__/\         /  /\     "
-dugecho "    /  /::\     /  /:/_        \  \:\               /  /:/\:\       \  \:\       /  /:/_    "
-dugecho "   /  /:/\:\   /  /:/ /\        \  \:\             /  /:/  \:\       \  \:\     /  /:/ /\   "
-dugecho "  /  /:/~/:/  /  /:/ /::\   ___  \  \:\           /__/:/ \__\:|  ___  \  \:\   /  /:/_/::\  "
-dugecho " /__/:/ /:/  /__/:/ /:/\:\ /__/\  \__\:\          \  \:\ /  /:/ /__/\  \__\:\ /__/:/__\/\:\ "
-dugecho " \  \:\/:/   \  \:\/:/~/:/ \  \:\ /  /:/           \  \:\  /:/  \  \:\ /  /:/ \  \:\ /~~/:/ "
-dugecho "  \  \::/     \  \::/ /:/   \  \:\  /:/             \  \:\/:/    \  \:\  /:/   \  \:\  /:/  "
-dugecho "   \  \:\      \__\/ /:/     \  \:\/:/               \  \::/      \  \:\/:/     \  \:\/:/   "
-dugecho "    \  \:\       /__/:/       \  \::/                 \__\/        \  \::/       \  \::/    "
-dugecho "     \__\/       \__\/         \__\/                                \__\/         \__\/     "
+dugecho "      ___         ___           ___                _____          ___           ___      "
+dugecho "     /  /\       /  /\         /__/\              /  /::\        /__/\         /  /\     "
+dugecho "    /  /::\     /  /:/_        \  \:\            /  /:/\:\       \  \:\       /  /:/_    "
+dugecho "   /  /:/\:\   /  /:/ /\        \  \:\          /  /:/  \:\       \  \:\     /  /:/ /\   "
+dugecho "  /  /:/~/:/  /  /:/ /::\   ___  \  \:\        /__/:/ \__\:|  ___  \  \:\   /  /:/_/::\  "
+dugecho " /__/:/ /:/  /__/:/ /:/\:\ /__/\  \__\:\       \  \:\ /  /:/ /__/\  \__\:\ /__/:/__\/\:\ "
+dugecho " \  \:\/:/   \  \:\/:/~/:/ \  \:\ /  /:/        \  \:\  /:/  \  \:\ /  /:/ \  \:\ /~~/:/ "
+dugecho "  \  \::/     \  \::/ /:/   \  \:\  /:/          \  \:\/:/    \  \:\  /:/   \  \:\  /:/  "
+dugecho "   \  \:\      \__\/ /:/     \  \:\/:/            \  \::/      \  \:\/:/     \  \:\/:/   "
+dugecho "    \  \:\       /__/:/       \  \::               \__\/        \  \::/       \  \::/    "
+dugecho "     \__\/       \__\/         \__\/                             \__\/         \__\/     "
