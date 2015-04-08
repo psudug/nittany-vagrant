@@ -15,7 +15,7 @@ fi
 DIR_BACKUP=/vagrant/backups
 
 #Override backup directory if argument passed
-if [ -z $1 ]; then
+if [ -z "$1" ]; then
   DIR_BACKUP=$1
 fi
 
@@ -26,18 +26,10 @@ then sudo mkdir "backups"
 sudo chmod 700 "backups"
 fi
 
-log_msg() {
-  # Log to syslog
-  logger -t `basename $0` "$*"
+BACKUP_FILE=$DIR_BACKUP/"$site"_archive_$(date +%Y%m%d).tar
+BACKUP_LOG='/var/log/drush_backuplog'
 
-  # Echo to stdout
-  LOG_TS=`date +'%H:%M:%S'`
-  echo "$LOG_TS - $*"
-}
-
-BACKUP_FILE=$DIR_BACKUP/$site_archive_`date +%Y%m%d`.tar
-
-log_msg "Backing up files and database to $BACKUP_FILE ..."
+echo "Backing up files and database to $BACKUP_FILE ..." >> $BACKUP_LOG
 
 #List drush aliases to backup here in the following format:
   #site="sitename"
@@ -49,14 +41,17 @@ log_msg "Backing up files and database to $BACKUP_FILE ..."
 #Default backup for nittany drupal site
 site="nittany"
 drush @nittany archive-dump \
-  --destination=$BACKUP_FILE \
+  --destination="$BACKUP_FILE" \
   --preserve-symlinks \
   --overwrite
 
 RC=$?
 
 if [ "$RC" = 0 ]; then
-  log_msg "Backup for $site completed successfully ..."
+  echo "Backup for $site completed successfully ..." >> $BACKUP_LOG
 else
-  log_msg "Backup for $site exited with return code: $RC"
+  echo "Backup for $site exited with return code: $RC" >> $BACKUP_LOG
 fi
+
+#Clear out backups older than 7 days and print deleted files to log
+find "$DIR_BACKUP" -type f -mtime +7 -fprint "$BACKUP_LOG" -delete
