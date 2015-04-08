@@ -100,6 +100,15 @@ if [ "$answer" = "y" ]; then
 else
   dugwarn "To run this in the future you can issue: $run"
 fi
+# ask about phantomjs/access_lint
+question="Would you like the ability to create accessibility reports via access_lint?"
+run='sudo bash /vagrant/scripts/access_lint/access.sh'
+read -p "$question (y/n) " answer
+if [ "$answer" = "y" ]; then
+  $run
+else
+  dugwarn "To run this in the future you can issue: $run"
+fi
 # SSH
 question="Would you like to setup SSH keys?"
 run='bash /vagrant/scripts/ssh/setup-ssh.sh'
