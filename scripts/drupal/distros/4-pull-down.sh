@@ -43,7 +43,7 @@ rsync -avz -e "ssh -p $port" "$name@$address:~/nittany.sql" /var/www/html/nittan
 # rewrite settings for the local version
 rm nittany/sites/default/settings.php
 # install drupal just to get db creds in place
-drush @nittany si minimal -y --db-url=mysql://root@localhost/nittany --account-name=admin --account-mail=admin@nittany.psudug.dev install_configure_form.update_status_module='array(FALSE,FALSE)' install_configure_form.site_default_country=US --y
+drush @nittany si minimal -y --db-url=mysql://root@localhost/nittany --account-name=admin --account-mail=$1 install_configure_form.update_status_module='array(FALSE,FALSE)' install_configure_form.site_default_country=US --y
 # drop local database so we can repopulate it
 drush @nittany sql-drop --y
 # todo: now do the sql-sync stuff from that system down to this one
@@ -51,3 +51,7 @@ drush @nittany sql-query --file=/var/www/html/nittany.sql --y
 drush @nittany sqlsan --y
 drush @nittany rr
 drush @nittany cc all
+# disable modules that will absolutely cause issues if there's
+# a significant environment change from prod to dev
+drush @nittany dis apc filecache securepages
+drush @nittany cook golocal --mlt-email_address=$1 --y
