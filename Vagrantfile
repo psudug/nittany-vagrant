@@ -33,7 +33,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       cpus = `nproc`.to_i
       # meminfo shows KB and we need to convert to MB
       mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
-    else # sorry Windows folks, I can't help you
+    elsif host =~ /mingw32/
+      mem = `wmic os get TotalVisibleMemorySize | grep '^[0-9]'`.to_i / 1024 / 4
+      if mem < 1024
+        mem = 1024
+      end
+      cpus = 2
+    else # sorry weird Windows folks, I can't help you
       cpus = 2
       mem = 1024
     end
