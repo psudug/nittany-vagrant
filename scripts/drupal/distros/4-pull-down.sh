@@ -54,4 +54,6 @@ drush @nittany sqlsan
 # disable modules that will absolutely cause issues if there's
 # a significant environment change from prod to dev
 drush @nittany dis apc filecache securepages
+# the only thing specific to PSU
+drush @nittany dis webaccess*
 drush @nittany cook golocal --mlt-email_address=$1
