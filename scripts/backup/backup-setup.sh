@@ -18,20 +18,21 @@ backup='/vagrant/scripts/backup/drush-backup.sh'
 # Get crontab config, validate and put in task
 entercron(){
   read -p "What directory would you like to have your backups placed in? [/vagrant/scripts/backups/] " backupdir
-  if [ ! -z backupdir ]; then
-    backup="$backupdir"
-  fi
 
   #Enter cron line
   read -p "Please enter how often you would like backups to run in numeric crontab format with single space delimited values. $cronguide " cronfreq
 
   #If cron is valid, enter it into crontab
   if [[ $cronfreq =~ $validcron ]]; then
-    job="$cronfreq $backup"
+    if [ ! -z backupdir ]; then
+       job="$cronfreq $backup $backupdir"
+    else
+      job="$cronfreq $backup"
+    fi
     echo "$job" | sudo tee --append /etc/crontab > /dev/null
     return 0
   else
-    echo "This is not valid syntax! \n"
+    printf "This is not valid syntax!\n"
     entercron
   fi
 }
