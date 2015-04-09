@@ -15,7 +15,8 @@ question="Would you like to setup SSH keys?"
 run='bash /vagrant/scripts/ssh/setup-ssh.sh'
 read -p "$question (y/n) " answer
 if [ "$answer" = "y" ]; then
-  $run
+  read -p "What is your email you want to use with SSH?" email
+  ssh-keygen -t rsa -C "$email"
   dugecho "Now that you have an SSH key, you can run:"
   dugwarn 'ssh-copy-id -i ~/.ssh/id_rsa.pub "-p PORT USER@SERVER"'
   dugecho "enter your password, and bind this VM with a server to help with provisioning in the future (potentially in the next step)"
@@ -28,7 +29,7 @@ if [ "$WIZ" = "y" ]; then
   touch $HOME/wizard_ran.txt
   # establish drupaling
   dugecho "Glad to hear it, let's get started by installing drupal"
-  bash /vagrant/scripts/drupal/setup-drupal.sh $USER
+  bash /vagrant/scripts/drupal/setup-drupal.sh $USER $email
   # establish nittany
   question="Would you like to install the nittany baseline? These are a package of commonly recommended modules by the PSU DUG community."
   run='bash /vagrant/scripts/nittany/setup-nittany.sh'

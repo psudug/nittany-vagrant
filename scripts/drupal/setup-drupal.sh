@@ -7,6 +7,12 @@ if [ -z $1 ]; then
   else
     owner=$1
 fi
+# email address to use or example
+if [ -z $2 ]; then
+    email='example@example.example'
+  else
+    email=$2
+fi
 # find all files that are bash scripts here
 IFS=$'\r\n' GLOBIGNORE='*' :; files=($(find /vagrant/scripts/drupal/distros/*.sh))
 echo $files
@@ -28,7 +34,7 @@ while menuitems && read -rp "$prompt" num && [[ "$num" ]]; do
   }
   # if we got here it means we have valid input
   ((num--)); choice="${files[num]}"
-  bash $choice
+  bash $choice $email
   bash /vagrant/scripts/drupal/drupal-cleanup.sh
   exit
 done

@@ -10,4 +10,4 @@ cd nittany
 # prompt distro to build
 prompt='What distribution should we run?'
 read -rp "$prompt" distro
-drush @nittany si $distro -y --db-url=mysql://root@localhost/nittany --account-name=admin --account-mail=admin@nittany.psudug.dev install_configure_form.update_status_module='array(FALSE,FALSE)' install_configure_form.site_default_country=US --y
+drush @nittany si $distro -y --db-url=mysql://root@localhost/nittany --account-name=admin --account-mail=$1 install_configure_form.update_status_module='array(FALSE,FALSE)' install_configure_form.site_default_country=US --y
