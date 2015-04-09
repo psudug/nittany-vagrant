@@ -10,7 +10,18 @@ dugecho(){
 dugwarn(){
   echo "${bldred}$1${txtreset}"
 }
-
+# SSH
+question="Would you like to setup SSH keys?"
+run='bash /vagrant/scripts/ssh/setup-ssh.sh'
+read -p "$question (y/n) " answer
+if [ "$answer" = "y" ]; then
+  $run
+  dugecho "Now that you have an SSH key, you can run:"
+  dugwarn 'ssh-copy-id -i ~/.ssh/id_rsa.pub "-p PORT USER@SERVER"'
+  dugecho "enter your password, and bind this VM with a server to help with provisioning in the future (potentially in the next step)"
+else
+  dugwarn "To run this in the future you can issue: $run"
+fi
 read -p "Would you like to install drupal? (y/n) " WIZ
 # lets keep going with everything
 if [ "$WIZ" = "y" ]; then
@@ -106,18 +117,6 @@ run='sudo bash /vagrant/scripts/access_lint/access.sh'
 read -p "$question (y/n) " answer
 if [ "$answer" = "y" ]; then
   $run
-else
-  dugwarn "To run this in the future you can issue: $run"
-fi
-# SSH
-question="Would you like to setup SSH keys?"
-run='bash /vagrant/scripts/ssh/setup-ssh.sh'
-read -p "$question (y/n) " answer
-if [ "$answer" = "y" ]; then
-  $run
-  dugecho "Now that you have an SSH key, you can run:"
-  dugwarn 'ssh-copy-id -i ~/.ssh/id_rsa.pub "-p PORT USER@SERVER"'
-  dugecho "enter your password, and bind this VM with a server to help with provisioning in the future"
 else
   dugwarn "To run this in the future you can issue: $run"
 fi
