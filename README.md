@@ -45,14 +45,9 @@ Nittany puts everything in version control for you (if you tell it to) but it do
 vagrant ssh
 
 # now logged in
-# generate an SSH key
-ssh-keygen -t rsa -C
-# answer the questions, then look on your git server for directions on how to add your ssh key there
 cd nittany
 git remote add origin YOURREPOHERE
 # make sure we have everything in version control to get up there
-git add -A
-git commit -m "package it all up ready to go"
 git push origin master
 ```
 
