@@ -12,16 +12,16 @@ dugwarn(){
 }
 dugwarn 'This is going to establish a connection to a real server you have, then pull down the code and database in question and mirror it locally so you can work off-line.'
 dugwarn "If these things sound scary then you probably shouldn't use this mode as its fairly advanced!"
-prompt="What server do you want to connect to?"
+prompt="What server do you want to connect to? "
 read -rp "$prompt" address
-prompt="What user name?"
+prompt="What user name? "
 read -rp "$prompt" name
-prompt="What port (usually 22 / 2222 are common)?"
+prompt="What port (usually 22 / 2222 are common)? "
 read -rp "$prompt" port
 # copy id to the server
 ssh-copy-id -i ~/.ssh/id_rsa.pub "-p $port $name@$address"
 # what path to pull
-prompt="Where is this site?"
+prompt="Where is this site (include trailing slash)? "
 read -rp "$prompt" dir
 
 # ALL REMOTE STUFF
