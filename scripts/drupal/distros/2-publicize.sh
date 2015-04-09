@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 # Publicize distribution
-
+# @todo test for existing directory
 git clone --branch 7.x-1.x https://github.com/drupalprojects/publicize.git nittany
 
 cd nittany
