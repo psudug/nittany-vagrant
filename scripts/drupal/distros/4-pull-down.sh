@@ -48,10 +48,10 @@ drush @nittany si minimal -y --db-url=mysql://root@localhost/nittany --account-n
 drush @nittany sql-drop --y
 # todo: now do the sql-sync stuff from that system down to this one
 drush @nittany sql-query --file=/var/www/html/nittany.sql --y
-drush @nittany sqlsan --y
 drush @nittany rr
 drush @nittany cc all
+drush @nittany sqlsan
 # disable modules that will absolutely cause issues if there's
 # a significant environment change from prod to dev
 drush @nittany dis apc filecache securepages
-drush @nittany cook golocal --mlt-email_address=$1 --y
+drush @nittany cook golocal --mlt-email_address=$1
