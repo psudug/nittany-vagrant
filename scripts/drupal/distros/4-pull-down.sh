@@ -1,7 +1,17 @@
 #!/usr/bin/sh
 # (Expert) Pull down from server
-echo 'This is going to establish a connection to a real server you have, then pull down the code and database in question and mirror it locally so you can work off-line.'
-echo "If these things sound scary then you probably shouldn't use this mode as its fairly advanced!"
+txtbld=$(tput bold)             # Bold
+bldgrn=$(tput setaf 2) #  green
+bldred=${txtbld}$(tput setaf 1) #  red
+txtreset=$(tput sgr0)
+dugecho(){
+  echo "${bldgrn}$1${txtreset}"
+}
+dugwarn(){
+  echo "${bldred}$1${txtreset}"
+}
+dugwarn 'This is going to establish a connection to a real server you have, then pull down the code and database in question and mirror it locally so you can work off-line.'
+dugwarn "If these things sound scary then you probably shouldn't use this mode as its fairly advanced!"
 prompt="What server do you want to connect to?"
 read -rp "$prompt" address
 prompt="What user name?"
@@ -13,13 +23,21 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub "-p $port $name@$address"
 # what path to pull
 prompt="Where is this site?"
 read -rp "$prompt" dir
+
 # ALL REMOTE STUFF
 # dump to db export via remote execution
+dugecho 'making a database dump of the remote system'
 ssh -p $port $name@$address "cd $dir && drush sql-dump --result-file=~/nittany.sql --y"
 # rsync full directory from that server
-rsync -az -e "ssh -p $port" $name@$address:$dir /var/www/html/nittany
+dugecho 'rsyncing down from remote source, might take awhile...'
+rsync -az -e "ssh -p $port" $name@$address:$dir /var/www/html/nittany/
+# drop file before rsync if it exists already
+if [ -f /var/www/html/nittany.sql ]
+  then
+    rm /var/www/html/nittany.sql
+fi
 # pull in nittany sql file
-rsync -az -e "ssh -p $port" "$name@$address:~/nittany.sql" /var/www/html/nittany.sql
+rsync -avz -e "ssh -p $port" "$name@$address:~/nittany.sql" /var/www/html/nittany.sql
 
 # ALL LOCAL STUFF
 # rewrite settings for the local version
