@@ -135,18 +135,6 @@ else
 fi
 
 dugecho ""
-dugecho "If you ever want to run through this wizard again you can either delete ~/wizard_ran.txt or run: bash /vagrant/scripts/buckets/wizard.sh"
-dugecho "That's all for now but trust us there's more to come... happy drupaling!"
-if [ "$drupalran" = "yes" ]; then
-  # print status so they know it lives
-  drush @nittany status
-  dugecho "==============================="
-  dugecho "login to your new drupal site:"
-  dugecho "http://nittany.psudug.dev/"
-  dugecho "Login: admin / admin"
-  dugecho "==============================="
-fi
-dugecho ""
 dugecho "WE ARE"
 dugecho "      ___         ___           ___                _____          ___           ___      "
 dugecho "     /  /\       /  /\         /__/\              /  /::\        /__/\         /  /\     "
@@ -159,3 +147,16 @@ dugecho "  \  \::/     \  \::/ /:/   \  \:\  /:/          \  \:\/:/    \  \:\  /
 dugecho "   \  \:\      \__\/ /:/     \  \:\/:/            \  \::/      \  \:\/:/     \  \:\/:/   "
 dugecho "    \  \:\       /__/:/       \  \::               \__\/        \  \::/       \  \::/    "
 dugecho "     \__\/       \__\/         \__\/                             \__\/         \__\/     "
+
+dugecho ""
+dugecho "If you ever want to run through this wizard again you can either delete ~/wizard_ran.txt or run: bash /vagrant/scripts/buckets/wizard.sh"
+dugecho "That's all for now but trust us there's more to come... happy drupaling!"
+if [ "$drupalran" = "yes" ]; then
+  # print status so they know it lives
+  drush @nittany status
+  dugecho "==============================="
+  dugecho "login to your new drupal site:"
+  dugecho "http://nittany.psudug.dev/"
+  dugecho "Login: admin / admin"
+  dugecho "==============================="
+fi
