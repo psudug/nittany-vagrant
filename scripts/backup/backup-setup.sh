@@ -17,8 +17,10 @@ backup='/vagrant/scripts/backup/drush-backup.sh'
 
 # Get crontab config, validate and put in task
 entercron(){
-  read -p "What directory would you like to have your backups placed in? [/vagrant/scripts/backups/] " backupdir
-
+  read -p "What directory would you like to have your backups placed in? [/vagrant/scripts/backup/] " backupdir
+  while [ ! -d "$backupdir" ]; do
+    read -p "This is not a valid directory! What directory would you like to have your backups placed in? [/vagrant/scripts/backup/] " backupdir
+  done
   #Enter cron line
   read -p "Please enter how often you would like backups to run in numeric crontab format with single space delimited values. $cronguide " cronfreq
 
