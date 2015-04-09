@@ -26,10 +26,9 @@ while menuitems && read -rp "$prompt" num && [[ "$num" ]]; do
   (( num > 0 && num <= ${#files[@]} )) || {
       msg="Invalid option: $num"; continue
   }
-  if [ $num == ${#files[@]} ];then
-    ((num--)); choice="${files[num]}"
-    bash $choice
-    bash /vagrant/scripts/drupal/drupal-cleanup.sh
-    exit
-  fi
+  # if we got here it means we have valid input
+  ((num--)); choice="${files[num]}"
+  bash $choice
+  bash /vagrant/scripts/drupal/drupal-cleanup.sh
+  exit
 done
