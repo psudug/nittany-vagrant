@@ -123,6 +123,17 @@ else
 fi
 # file existing means this won't execute on ssh login
 touch $HOME/wizard_ran.txt
+
+# ask about automatic backups
+question="Would you like to set up automatic backups of your site?"
+run='sudo bash /vagrant/scripts/backup/backup-setup.sh'
+read -p "$question (y/n) " answer
+if [ "$answer" = "y" ]; then
+  $run
+else
+  dugwarn "To run this in the future you can issue: $run"
+fi
+
 dugecho ""
 dugecho "If you ever want to run through this wizard again you can either delete ~/wizard_ran.txt or run: bash /vagrant/scripts/buckets/wizard.sh"
 dugecho "That's all for now but trust us there's more to come... happy drupaling!"
