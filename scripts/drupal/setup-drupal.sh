@@ -13,6 +13,10 @@ if [ -z $2 ]; then
   else
     email=$2
 fi
+if [ ! -z $3 ]; then
+  drupalpath="$3"
+fi
+
 # find all files that are bash scripts here
 IFS=$'\r\n' GLOBIGNORE='*' :; files=($(find /vagrant/scripts/drupal/distros/*.sh))
 echo $files
@@ -34,7 +38,9 @@ while menuitems && read -rp "$prompt" num && [[ "$num" ]]; do
   }
   # if we got here it means we have valid input
   ((num--)); choice="${files[num]}"
-  bash $choice $email
+
+#The actual file selection
+  bash $choice $email $drupalpath
   bash /vagrant/scripts/drupal/drupal-cleanup.sh
   exit
 done

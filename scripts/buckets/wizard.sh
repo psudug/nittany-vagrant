@@ -29,7 +29,10 @@ if [ "$WIZ" = "y" ]; then
   touch $HOME/wizard_ran.txt
   # establish drupaling
   dugecho "Glad to hear it, let's get started by installing drupal"
-  bash /vagrant/scripts/drupal/setup-drupal.sh $USER $email
+
+  read -p "Where would you like to install drupal? [ /var/www/html/nittany ] " drupalpath
+
+  bash /vagrant/scripts/drupal/setup-drupal.sh $USER $email $drupalpath
   # establish nittany
   question="Would you like to install the nittany baseline? These are a package of commonly recommended modules by the PSU DUG community."
   run='bash /vagrant/scripts/nittany/setup-nittany.sh'
