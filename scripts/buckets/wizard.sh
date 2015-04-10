@@ -29,7 +29,6 @@ if [ "$WIZ" = "y" ]; then
   touch $HOME/wizard_ran.txt
   # establish drupaling
   dugecho "Glad to hear it, let's get started by installing drupal"
-
   bash /vagrant/scripts/drupal/setup-drupal.sh $USER $email
   # establish nittany
   question="Would you like to install the nittany baseline? These are a package of commonly recommended modules by the PSU DUG community."

@@ -14,7 +14,6 @@ if [ -z $2 ]; then
     email=$2
 fi
 
-read -p "Where would you like to install drupal? [ /var/www/html/nittany ] " drupalpath
 if [[ -z $drupalpath ]]; then
   drupalpath="nittany"
 fi
@@ -42,10 +41,11 @@ while menuitems && read -rp "$prompt" num && [[ "$num" ]]; do
   ((num--)); choice="${files[num]}"
 
   # Check to see if there is already an existing site
-  if [[ ! "$(ls -A $drupalpath)" ]]; then
+  if [[ ! "$(ls -A /var/www/html/nittany)" ]]; then
+    read -p "Where would you like to install drupal? [ /var/www/html/nittany ] " drupalpath
     bash $choice $email $drupalpath
   else
-    bash setup-project.sh $choice $email $drupalpath
+    bash setup-project.sh $choice $email
   fi
 
   bash /vagrant/scripts/drupal/drupal-cleanup.sh
