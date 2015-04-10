@@ -1,5 +1,5 @@
 #To Do
-- [ ] In wizard, ask where the drupal site will be installed (default nittany)
+- [x] In wizard, ask where the drupal site will be installed (default nittany)
 - [ ] For each pulldown script, call a script that asks about where to install
   - [ ] If directory exists, confirm they want to overwrite
 - [ ] Series of scripts to perform multisite functionality
