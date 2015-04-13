@@ -23,8 +23,9 @@ sitedir="nittany"
 # Allow user to choose how to install new Drupal site
 pickinstall()
 {
+  cd /vagrant/scripts/drupal/multisite
   options="1.)Create site within existing drupal instance (multisite configuration)\n2.)Create a new drupal instance at your webroot with a vhost configuration\n3.)Delete current drupal instance and overwrite all files "
-  read -p "$(echo -e 'You already have a site set up within nittany vagrant! How would you like to install this site?\n'"$options"'Please enter your choice (1,2,3)')" installprofile
+  read -p "$(echo -e 'You already have a site set up within nittany vagrant! How would you like to install this site?\n'"$options"'Please enter your choice (1,2,3) ')" installprofile
   case "$installprofile" in
     1)  multisite
       # For simplicity and safety this option will currently not be available for existing sites. This option will be very limited, but additional functionality may be added later
