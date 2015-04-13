@@ -27,7 +27,7 @@ menuitems() {
 }
 
 # prompt the user
-prompt="Enter an option: "
+prompt="Type the number of the option you'd like to run: "
 while menuitems && read -rp "$prompt" num && [[ "$num" ]]; do
   (( num > 0 && num <= ${#files[@]} )) || {
       msg="Invalid option: $num"; continue

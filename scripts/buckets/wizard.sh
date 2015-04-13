@@ -11,11 +11,11 @@ dugwarn(){
   echo "${bldred}$1${txtreset}"
 }
 # SSH
-question="Would you like to setup SSH keys?"
+question="Would you like to setup SSH keys? This will allow your Vagrant instance to talk to servers in the future. This can be important if getting code from remote servers, cloning projects or issuing commands from this server to another."
 run='bash /vagrant/scripts/ssh/setup-ssh.sh'
 read -p "$question (y/n) " answer
 if [ "$answer" = "y" ]; then
-  read -p "What is your email you want to use with SSH?" email
+  read -p "What is your email you want to use with SSH? " email
   ssh-keygen -t rsa -C "$email"
   dugecho "Now that you have an SSH key, you can run:"
   dugwarn 'ssh-copy-id -i ~/.ssh/id_rsa.pub "-p PORT USER@SERVER"'
@@ -31,7 +31,7 @@ if [ "$WIZ" = "y" ]; then
   dugecho "Glad to hear it, let's get started by installing drupal"
   bash /vagrant/scripts/drupal/setup-drupal.sh $USER $email
   # establish nittany
-  question="Would you like to install the nittany baseline? These are a package of commonly recommended modules by the PSU DUG community."
+  question="Would you like to install the nittany baseline? These are a list of community modules and themes that the PSU Drupal User's Group recommends for most sites."
   run='bash /vagrant/scripts/nittany/setup-nittany.sh'
   read -p "$question (y/n) " answer
   if [ "$answer" = "y" ]; then
@@ -40,7 +40,7 @@ if [ "$WIZ" = "y" ]; then
     dugwarn "To run this in the future you can issue: $run"
   fi
   # ask about SEO
-  question="Would you like some Search Engine Optimization (SEO) enabled?"
+  question="Would you like some Search Engine Optimization (SEO) enabled? This is important if this site will be publicly accessible and search ranking matters."
   run='drush @nittany cook seo --y'
   read -p "$question (y/n) " answer
   if [ "$answer" = "y" ]; then
@@ -52,7 +52,7 @@ if [ "$WIZ" = "y" ]; then
   fi
 
   # ask about wysiwyg
-  question="Would you like a nice WYSIWYG editor (CKEditor 4.x)?"
+  question="Would you like a well configured 'What You See Is What You Get' (WYSIWYG) editor? This will install and configure the popular, accessibility minded text editor called CKEditor (4.x)"
   run='drush @nittany cook textbook --y'
   read -p "$question (y/n) " answer
   if [ "$answer" = "y" ]; then
@@ -88,7 +88,7 @@ if [ "$WIZ" = "y" ]; then
   #  dugwarn "To run this in the future you can issue: $run"
   #fi
   # ask about git
-  question="Would you like to start putting this all in version control?"
+  question="Would you like to start putting all this work in version control? (You really should)"
   run='bash /vagrant/scripts/git/setup-repo.sh'
   read -p "$question (y/n) " answer
   if [ "$answer" = "y" ]; then
@@ -104,7 +104,7 @@ if [ "$WIZ" = "y" ]; then
   drupalran="no"
 fi
 # ask about front end dev
-question="Would you like to install PSU DUGs front end development stack for SASS?"
+question="Are you going to be doing front-end development like theme development? If so would you like to install our recommended front end development stack for SASS development?"
 run='sudo bash /vagrant/scripts/frontend/setup-frontend-dev.sh'
 read -p "$question (y/n) " answer
 if [ "$answer" = "y" ]; then
@@ -113,7 +113,7 @@ else
   dugwarn "To run this in the future you can issue: $run"
 fi
 # ask about phantomjs/access_lint
-question="Would you like the ability to create accessibility reports via access_lint?"
+question="Would you like the ability to create accessibility reports via access_lint? This can help with ensuring you maintain accessibility compliance to keep your website working well for users with disabilities."
 run='sudo bash /vagrant/scripts/access_lint/access.sh'
 read -p "$question (y/n) " answer
 if [ "$answer" = "y" ]; then
@@ -125,7 +125,7 @@ fi
 touch $HOME/wizard_ran.txt
 
 # ask about automatic backups
-question="Would you like to set up automatic backups of your site?"
+question="Would you like to set up your site to be automatically backed up? These back ups still live on this server but this can help protect you from yourself :)"
 run='sudo bash /vagrant/scripts/backup/backup-setup.sh'
 read -p "$question (y/n) " answer
 if [ "$answer" = "y" ]; then
@@ -155,8 +155,10 @@ if [ "$drupalran" = "yes" ]; then
   # print status so they know it lives
   drush @nittany status
   dugecho "==============================="
-  dugecho "login to your new drupal site:"
-  dugecho "http://nittany.psudug.dev/"
-  dugecho "Login: admin / admin"
+  dugecho "Now you can login to the site you just created"
+  dugwarn "URL: http://nittany.psudug.dev/"
+  dugecho "Login details:"
+  dugwarn "Username: admin"
+  dugwarn "Password: admin"
   dugecho "==============================="
 fi

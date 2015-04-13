@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-# Standard install
+# Install a Standard drupal site
 # download drupal
 drush dl drupal-7 --drupal-project-rename=nittany
 # do the initial drush si so we have minimal in place

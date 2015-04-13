@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-# Publicize distribution
+# Install Publicize, this will give you a site similar to https://drupal.psu.edu
 # @todo test for existing directory
 git clone --branch 7.x-1.x https://github.com/drupalprojects/publicize.git nittany
 

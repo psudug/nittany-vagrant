@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-# (Expert) Pull down from server
+# (Expert) Pull in a site from another server
 txtbld=$(tput bold)             # Bold
 bldgrn=$(tput setaf 2) #  green
 bldred=${txtbld}$(tput setaf 1) #  red

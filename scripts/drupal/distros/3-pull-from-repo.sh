@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-# (Advanced) Build a distro from a repo
+# (Advanced) Build a site from a git repo
 
 prompt='What git repo would you like to pull from?'
 read -rp "$prompt" repo
