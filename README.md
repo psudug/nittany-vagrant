@@ -26,6 +26,12 @@ copy and paste below
 ```
 type `:wq` hit `enter`
 
+If you can't install git (older versions of OSX prevent this):
+1. Download this project's zip file and place it in your home directory / move it to the directory just below Downloads
+2. double click to Unzip
+3. Open terminal
+4. type 
+
 ###Spin up the vagrant instance
 ```
 git clone https://github.com/psudug/nittany-vagrant.git
