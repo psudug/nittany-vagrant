@@ -77,7 +77,7 @@ vhost(){
       allow from all
     </Directory>
   </VirtualHost>
-  EOF
+EOF
 }
 overwrite(){
   #perform overwrite preconfig
@@ -105,5 +105,5 @@ drushalias(){
         'root' => '/var/www/html/$sitedir'
         'uri' => 'http://$sitedir.psudug.dev'
       );
-  EOF
+EOF
 }
