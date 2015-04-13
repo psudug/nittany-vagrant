@@ -11,14 +11,20 @@ There are more modules then what’s provided here and we’ll be adding more re
 ###How to use this to bring up Nittany Vagrant
 1. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) (ensure you are on the latest version 4.3+)
 2. Install [Vagrant](http://www.vagrantup.com/downloads.html) (you'll need Vagrant 1.7+)
-3. Install [git](http://git-scm.com/downloads) (recommended)
+3. Install [git](http://git-scm.com/downloads) (recommended) (you may need to authorize installation on Mac OSX)
 4. Add the below statement to your /etc/hosts (or [windows equivalent](http://www.howtogeek.com/howto/27350/beginner-geek-how-to-edit-your-hosts-file/)) so you can access it "over the web" - you _may_ need administrator rights to do this
 
+on OSX:
 ###Nittany host file addition
+Open Terminal
+type `sudo vi /etc/hosts`
+type `i`
+copy and paste below
 ```
 # Nittany Vagrant development address
 192.168.18.55      nittany.psudug.dev
 ```
+type `:wq`
 
 ###Spin up the vagrant instance
 ```
