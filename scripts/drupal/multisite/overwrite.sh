@@ -2,7 +2,7 @@
 
 #perform overwrite preconfig
 cd /var/www/html
-sitelist="$(find . -type d -maxdepth 1)"
+sitelist="$(find . -maxdepth 1 -type d)"
 select site in "$sitelist"
 do
 dugwarn "You are about to recursively remove your site located in /var/www/html/$site. This will be permanant!"

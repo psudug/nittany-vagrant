@@ -4,6 +4,7 @@ if [ -z $1 ]; then
   else
     owner=$1
 fi
+cd /var/www/html/nittany
 # set to admin
 drush @nittany upwd admin --password=admin
 drush @nittany cleanup

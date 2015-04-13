@@ -10,12 +10,12 @@ if [[ ! -z $2 ]]; then
   sitedir=$2
 fi
 #perform vhost preconfig
-read -p "You have chosen to install a new drupal instance at your siteroot of /var/www/html/. Please enter the project name, which will be a subdirectory. You may use underscores, but no spaces." sitedir
+read -p "You have chosen to install a new drupal instance at your siteroot of /var/www/html/. Please enter the project name, which will be a subdirectory. You may use underscores, but no spaces.\n" sitedir
 drupalpath="/var/www/html/$sitedir"
 vhostconfig="/etc/httpd/conf.d/$sitedir.domains.conf"
 mkdir "$drupalpath"
 if [ ! -f "$vhostconfig" ]; then
-  touch
+  sudo touch $vhostconfig
 fi
 sudo cat > "$vhostconfig" <<- EOF
 NameVirtualHost *:80
