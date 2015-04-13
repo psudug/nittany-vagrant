@@ -17,14 +17,14 @@ There are more modules then what’s provided here and we’ll be adding more re
 on OSX:
 ###Nittany host file addition
 Open Terminal
-type `sudo vi /etc/hosts`
+type `sudo vi /etc/hosts` hit `enter`
 type `i`
 copy and paste below
 ```
 # Nittany Vagrant development address
 192.168.18.55      nittany.psudug.dev
 ```
-type `:wq`
+type `:wq` hit `enter`
 
 ###Spin up the vagrant instance
 ```
