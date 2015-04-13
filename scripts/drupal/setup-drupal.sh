@@ -45,7 +45,7 @@ while menuitems && read -rp "$prompt" num && [[ "$num" ]]; do
     read -p "Where would you like to install drupal? [ /var/www/html/nittany ] " drupalpath
     bash $choice $email $drupalpath
   else
-    bash setup-project.sh $choice $email
+    bash /vagrant/scripts/drupal/multisite/setup-project.sh $choice $email
   fi
 
   bash /vagrant/scripts/drupal/drupal-cleanup.sh
