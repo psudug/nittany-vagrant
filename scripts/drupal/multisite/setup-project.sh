@@ -19,6 +19,7 @@ email=$2
 drupalpath="/var/www/html/nittany"
 sitedir="nittany"
 
+pickinstall
 # Allow user to choose how to install new Drupal site
 pickinstall()
 {
