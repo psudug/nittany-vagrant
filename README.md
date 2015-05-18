@@ -23,6 +23,9 @@ copy and paste below
 ```
 # Nittany Vagrant development address
 192.168.18.55      nittany.psudug.dev
+
+# Uncomment next line if your site will have non-www prefixed addresses redirected to www prefixed.
+# 192.168.18.55      www.nittany.psudug.dev
 ```
 type `:wq` hit `enter`
 
