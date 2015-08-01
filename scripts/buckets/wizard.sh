@@ -41,7 +41,7 @@ if [ "$WIZ" = "y" ]; then
   fi
   # ask about SEO
   question="Would you like some Search Engine Optimization (SEO) enabled? This is important if this site will be publicly accessible and search ranking matters."
-  run='drush @nittany cook seo --y'
+  run='drush @nittany cook seo --y --v'
   read -p "$question (y/n) " answer
   if [ "$answer" = "y" ]; then
     $run
@@ -53,7 +53,7 @@ if [ "$WIZ" = "y" ]; then
 
   # ask about wysiwyg
   question="Would you like a well configured 'What You See Is What You Get' (WYSIWYG) editor? This will install and configure the popular, accessibility minded text editor called CKEditor (4.x)"
-  run='drush @nittany cook textbook --y'
+  run='drush @nittany cook textbook --y --v'
   read -p "$question (y/n) " answer
   if [ "$answer" = "y" ]; then
     # we need to get textbook repos before running
@@ -68,7 +68,7 @@ if [ "$WIZ" = "y" ]; then
 
   # ask about media handling
   #question="Would you like your site to come equipped with our recommended media handling?"
-  #run='drush -y @nittany cook nittany_media'
+  #run='drush -y @nittany cook nittany_media --v'
   #read -p "$question (y/n) " answer
   #if [ "$answer" = "y" ]; then
   #  $run
@@ -80,7 +80,7 @@ if [ "$WIZ" = "y" ]; then
   #question="Would you like to use Zurb foundation instead of the lame default drupal theme?"
   # @todo in the future we'll ask what theme
   #drush @nittany cook nittany_theme --skip-confirm
-  #run='drush @nittany cook zurb_foundation --skip-confirm'
+  #run='drush @nittany cook zurb_foundation --skip-confirm --v'
   #read -p "$question (y/n) " answer
   #if [ "$answer" = "y" ]; then
   #  $run

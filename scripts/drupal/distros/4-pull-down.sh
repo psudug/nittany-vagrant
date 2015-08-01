@@ -56,4 +56,4 @@ drush @nittany sqlsan
 drush @nittany dis apc filecache securepages
 # the only thing specific to PSU
 drush @nittany dis webaccess*
-drush @nittany cook golocal --mlt-email_address=$1
+drush @nittany cook golocal --mlt-email_address=$1 --v
