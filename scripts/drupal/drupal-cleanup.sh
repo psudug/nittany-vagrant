@@ -9,9 +9,7 @@ drush @nittany upwd admin --password=admin
 drush @nittany cleanup
 
 # apache file to match
-sudo cp /vagrant/scripts/server/files/domains.conf /etc/httpd/conf.d/domains.conf
-sudo chkconfig httpd on
-sudo service httpd restart
+bash /vagrant/scripts/server/sync-domains.sh
 # make sure files is owned correctly
 sudo chown -R $owner:apache /var/www/html/nittany/sites/default/files
 sudo chmod 2775 /var/www/html/nittany/sites/default/files
